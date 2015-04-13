@@ -1,6 +1,6 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 .browsehappy {
@@ -89,4 +89,99 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+body {
+  padding: 0px;
+  max-height: 820px;
+  display:flex;
+  background-color:#404040;
+}
+
+html {
+  height: 100%;
+}
+
+#annotation-container {}
+
+#annotation-facts {
+  height: 100%;
+  background-color:#404040 ;
+  color:white;
+  padding: 25px;
+
+  h3 {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: cursive;
+  }
+}
+
+#images-container {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-top: 10px;
+}
+
+canvas {
+  border: white 1px solid;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+#annotation-section {
+  background-color: black;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  height:100%;
+}
+
+#image-annotations {
+  padding: 20px;
+}
+
+#image-title {
+  color:white;
+  font-family: cursive;
+  margin-top: 0px;
+}
+
+
+#annotation-1 {
+  display:none;
+  position: absolute;
+  left: 111px;
+  top: -387px;
+  z-index: 2;
+}
+
+#annotation-2 {
+  display:none;
+  position: relative;
+  left: 162px;
+  top: -85px;
+  z-index: 3;
+  background: white;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#annotation-3 {
+  display:none;
+  position: relative;
+  left: 260px;
+  top: -187px;
+  z-index: 4;
+}
+
+#annotation-4 {
+  display:none;
+  position: relative;
+  left: 311px;
+  top: -368px;
+  z-index: 5;
 }
