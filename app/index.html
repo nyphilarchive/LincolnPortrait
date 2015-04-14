@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>annotationLincolnImage</title>
+    <title>A Lincoln Portrait - From the New York Philharmonic Digital Archives</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
@@ -402,9 +402,21 @@
         <p class="viewscore"> <span class ="col-md-1 glyphicon glyphicon-share" aria-hidden="true"></span>
 
         <a class="col-md-10" href="http://archives.nyphil.org/index.php/artifact/77ca87f5-4ec7-4001-9da0-ca1619d036ed/fullview" target="_blank">View entire score in the <br />Leon Levy Digital Archives</a></p>
+        
+
 
         <div class="sidebar-footer"><img src="images/nyphil_logo_white.png" />
-          <i class="fa fa-facebook"></i> <i class="fa fa-twitter"></i> <i class="fa fa-envelope-o"></i>
+          
+        <a href="#" onclick="return fbs_click()" target="_blank" title="Share This on Facebook">
+          <i class="fa fa-facebook"></i>
+        </a>
+
+          <a href="https://www.facebook.com/NYPhilArchive"></a>
+          <a class="twitter popup" href="http://twitter.com/share"><i class="fa fa-twitter"></i></a>
+          <a href="mailto: ?subject=A Lincoln Portrait - From the New York Philharmonic Archives&body=http://archives.nyphil.org/lincolnportrait"><i class="fa fa-envelope-o"></i></a>
+
+          
+
       </div>
     </div>
 
@@ -435,7 +447,32 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
-
+    
+    <!--Twitter button -->
+    <script>
+      $('.popup').click(function(event) {
+        var width  = 575,
+            height = 400,
+            left   = ($(window).width()  - width)  / 2,
+            top    = ($(window).height() - height) / 2,
+            url    = this.href,
+            opts   = 'status=1' +
+                     ',width='  + width  +
+                     ',height=' + height +
+                     ',top='    + top    +
+                     ',left='   + left;
+        
+        window.open(url, 'twitter', opts);
+     
+        return false;
+      });
+    </script>
+    <script>
+    function fbs_click() {
+      window.open('http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Farchives.nyphil.org/LincolnPortrait','sharer','toolbar=0,status=0,width=626,height=436');
+      return false;
+    }
+  </script>
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/tsgAnnotation.js"></script>
         <!-- endbuild -->
