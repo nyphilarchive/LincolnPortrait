@@ -234,13 +234,14 @@ var OpenDANnotate = function(){
 
       TSG.Canvas.annotations.offsetX += (somelastX - mouseX);
       TSG.Canvas.annotations.offsetY += (somelastY - mouseY);
-
-      var index = TSG.Canvas.annotations.isInBounds(evt.offsetX,evt.offsetY);
-      if(index !== false){
-        TSG.Canvas.annotations.toggleAnnotation(index);
+      if(dragged === false){
+        var index = TSG.Canvas.annotations.isInBounds(evt.offsetX,evt.offsetY);
+        if(index !== false){
+          TSG.Canvas.annotations.toggleAnnotation(index);
+        }
       }
 
-      dragStart = null;
+      dragStart = false;;
   	},false);
 
 
