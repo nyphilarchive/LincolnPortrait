@@ -129,16 +129,19 @@ var OpenDANnotate = function(){
 
   TSG.Utils.zoom = function(scaleFactor){
     TSG.Images.CurrentImage = TSG.Images.Regular;
+    TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left');
+    TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right');
     // if(TSG.Canvas.annotations.scale >= 2.25){
     //   TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left-xl');
     //   TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-xl');
     //   TSG.Images.CurrentImage = TSG.Images.XLarge;
     // }
-    // else if(TSG.Canvas.annotations.scale >= 1.5){
-    //   TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left-lg');
-    //   TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-lg');
-    //   TSG.Images.CurrentImage = TSG.Images.Large;
-    // }
+    // else
+    if(TSG.Canvas.annotations.scale === 1){
+      TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left-lg');
+      TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-lg');
+      TSG.Images.CurrentImage = TSG.Images.Large;
+    }
 
     //use recursion to ease the zoom;
     var pt = TSG.Canvas.ctx.transformedPoint(TSG.Images.CurrentImage.canvasWidth/2,TSG.Images.CurrentImage.canvasHeight/2);
@@ -153,13 +156,15 @@ var OpenDANnotate = function(){
   TSG.Utils.redraw = function redraw(){
     // Clear the entire canvas
     var p1 = TSG.Canvas.ctx.transformedPoint(0,0);
-    var p2 = TSG.Canvas.ctx.transformedPoint(TSG.Canvas.canvas.width,TSG.Canvas.canvas.height);
+    var p2 = TSG.Canvas.ctx.transformedPoint(TSG.Images.CurrentImage.canvasWidth,TSG.Images.CurrentImage.canvasHeight);
     TSG.Canvas.ctx.clearRect(p1.x,p1.y,p2.x-p1.x,p2.y-p1.y);
     TSG.Utils.drawImage(TSG.Canvas.ctx);
   }
 
   TSG.Utils.reset = function reset() {
     TSG.Images.CurrentImage = TSG.Images.Regular;
+    TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left');
+    TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right');
     TSG.Canvas.canvas.width = TSG.Images.Regular.canvasWidth;
     TSG.Canvas.canvas.height = TSG.Images.Regular.canvasHeight;
 
