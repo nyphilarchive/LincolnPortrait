@@ -31,30 +31,66 @@
         <div id="images-container">
           <div class="image-annotations">
             <!--Put your html annotations here-->
-              <span id="annotation-1">
+              <!-- <span id="annotation-1">
                 <iframe width="200" height="200" src="https://www.youtube.com/embed/0FF4HyB77hQ" frameborder="0" allowfullscreen></iframe>
               </span>
-              <span id="annotation-2">
-                This signature says something beautiful I assure you
-              </span>
-              <span id="annotation-3">
-                <audio style="width:220px;" controls>
-                  <source src="resources/test.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-              </span>
-              <span id="annotation-4">
-                <video width="320" height="240" controls>
-                  <source src="resources/newlennymoscow.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </span>
-            <!---->
+ -->
+              <!-- Large modal -->
+              <button type="button" class="btn btn-primary tsg-modal-btn" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+
+              <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div id="annotation-0" class="modal-content">
+                    <button class="tsg-modal-close-btn" type="button" data-dismiss="modal" aria-label="Close"><span class ="tsg-close glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="gridSystemModalLabel">Henry Fonda</h4>
+                      <div class="tsg-header-title">Actor</div>
+                    </div>
+                    <div class="modal-body">
+                      <div class="tsg-caption-content container-fluid">
+                        Dear Andre – How exciting to do Portrait with you! I hope it can happen again.
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <div class="tsg-caption">
+                        Excerpt from London Symphony Orchestra performance, Aaron Copland conducting, 1970
+                      </div>
+                      <audio controls>
+                        <source src="resources/HenryFonda.mp3" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                      </audio>
+                    </div>
+                  </div>
+                  <div id="annotation-1" class="modal-content">
+                    <button class="tsg-modal-close-btn" type="button" data-dismiss="modal" aria-label="Close"><span class ="tsg-close glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+                    <div class="modal-header">
+                      <a class="tsg-program-link" target="_blank" href="http://archives.nyphil.org/index.php/artifact/c0eddb8b-d167-46b9-b956-f4fe1194a1af/fullview">View the New York Philharmonic program</a>
+                      <h4 class="modal-title" id="gridSystemModalLabel">Aaron Copland</h4>
+                      <div class="tsg-header-title">Composer</div>
+                    </div>
+                    <div class="modal-body">
+                      <div class="tsg-caption-content container-fluid">
+                        With profoundest thanks – after a thrilling radio premiere and my first hearing – Aug 16, 1942
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <div class="tsg-credit">
+                        New York Philharmonic, Zubin Mehta conducting.
+                      </div>
+                      <audio controls>
+                        <source src="resources/Mehta-Copland.mp3" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                      </audio>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
 
 
             <canvas id="c"></canvas>
-            <img id="annotated-image" src="images/lincolnimage.jpeg" height="500px" width="400px" style="display:none"/>
-            <img id="annotated-image2" src="images/lincolnimage1.jpeg" height="500px" width="400px" style="display:none"/>
+            <img id="annotated-image-left" src="images/lincolnImageLeft.jpeg" height="500px" width="400px" style="display:none"/>
+            <img id="annotated-image-right" src="images/lincolnImageRight.jpeg" height="500px" width="400px" style="display:none"/>
             <br/>
             <button id="zoomOut">Zoom out</button>
             <button id="zoomIn">Zoom in</button>
@@ -113,7 +149,6 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="bower_components/fabric/dist/fabric.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -128,8 +163,8 @@
     </script>
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/main.js"></script>
         <script src="scripts/tsgAnnotation.js"></script>
+
         <!-- endbuild -->
 </body>
 </html>

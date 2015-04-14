@@ -149,39 +149,70 @@ canvas {
   margin-top: 0px;
 }
 
-
-#annotation-1 {
-  display:none;
-  position: absolute;
-  left: 111px;
-  top: -387px;
-  z-index: 2;
+audio {
+  width:100%;
+  margin-top: 5px;
 }
 
-#annotation-2 {
+.modal-content {
+  width: 62%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  color:white;
+  border-radius: 0;
+  margin-top:25%;
   display:none;
+}
+
+.tsg-modal-close-btn {
+  color:white;
+  background: transparent;
+  float: right;
+  border: none;
+  font-size:30px;
+  padding: 0px;
+}
+
+.tsg-close {
+  background-color: black;
+  border-radius: 30px;
+  font-size: 30px;
   position: relative;
-  left: 162px;
-  top: -85px;
-  z-index: 3;
-  background: white;
+  top: -15px;
+  left: 15px;
+}
+
+.modal-footer {
   padding: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
+  border:none;
 }
 
-#annotation-3 {
-  display:none;
-  position: relative;
-  left: 260px;
-  top: -187px;
-  z-index: 4;
+.modal-header {
+  border:none;
+  padding: 7px;
 }
 
-#annotation-4 {
+.tsg-credit{
+  font-size: small;
+  opacity: 0.5;
+  text-align: center;
+}
+
+.tsg-header-title{
+  font-size: smaller;
+}
+
+.tsg-caption-content {
+  font-size: x-large;
+  width: 75%;
+}
+
+.tsg-modal-btn {
   display:none;
-  position: relative;
-  left: 311px;
-  top: -368px;
-  z-index: 5;
+}
+
+.tsg-program-link {
+  float: right;
+  color: red;
 }
