@@ -4,46 +4,6 @@ var OpenDANnotate = function(){
     Canvas  : {},
     Buttons : {},
     Events  : {},
-    Config  : {},
-    Images   : {}
-  };
-
-  TSG.Images.CurrentImage = {};
-
-  TSG.Images.Regular = {
-    origScale : {
-      width: .78,
-      height: .78
-    },
-    leftId: "annotated-image-left",
-    rightId: "annotated-image-right",
-    rightImageOffset: 25,
-    canvasWidth : 855,
-    canvasHeight: 580
-  };
-
-  TSG.Images.Large = {
-    origScale : {
-      width: .487,
-      height: .487
-    },
-    leftId: "annotated-image-left-lg",
-    rightId: "annotated-image-right-lg",
-    rightImageOffset: 25,
-    canvasWidth : 855,
-    canvasHeight: 600
-  };
-
-  TSG.Images.XLarge = {
-    origScale : {
-      width: .245,
-      height: .245
-    },
-    leftId: "annotated-image-left-xl",
-    rightId: "annotated-image-right-xl",
-    rightImageOffset: 60,
-    canvasWidth : 865,
-    canvasHeight: 580
   };
 
   TSG.Utils.trackTransforms = function trackTransforms(ctx){
@@ -111,8 +71,8 @@ var OpenDANnotate = function(){
   };
 
   TSG.Utils.drawImage = function(ctx){
-    ctx.drawImage(TSG.Canvas.annotatedImageLeft,0,0);
-    ctx.drawImage(TSG.Canvas.annotatedImageRight,(TSG.Images.CurrentImage.canvasWidth/TSG.Images.CurrentImage.origScale.width)/2-TSG.Images.CurrentImage.rightImageOffset,0);
+    ctx.drawImage(TSG.Canvas.annotatedImageRight,0,0);
+    ctx.drawImage(TSG.Canvas.annotatedImageLeft,(TSG.Canvas.canvas.width/.15)/2,0);
   }
 
   TSG.Utils.drawCircle = function(ctx){
@@ -128,26 +88,16 @@ var OpenDANnotate = function(){
   };
 
   TSG.Utils.zoom = function(scaleFactor){
-    TSG.Images.CurrentImage = TSG.Images.Regular;
-    // if(TSG.Canvas.annotations.scale >= 2.25){
-    //   TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left-xl');
-    //   TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-xl');
-    //   TSG.Images.CurrentImage = TSG.Images.XLarge;
-    // }
-    // else if(TSG.Canvas.annotations.scale >= 1.5){
-    //   TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left-lg');
-    //   TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-lg');
-    //   TSG.Images.CurrentImage = TSG.Images.Large;
-    // }
-
-    //use recursion to ease the zoom;
-    var pt = TSG.Canvas.ctx.transformedPoint(TSG.Images.CurrentImage.canvasWidth/2,TSG.Images.CurrentImage.canvasHeight/2);
+    var pt = TSG.Canvas.ctx.transformedPoint(TSG.Canvas.canvas.width/2,TSG.Canvas.canvas.height/2);
     TSG.Canvas.ctx.translate(pt.x,pt.y);
     var factor = Math.pow(scaleFactor,1);
     TSG.Canvas.ctx.scale(factor,factor);
     TSG.Canvas.ctx.translate(-pt.x,-pt.y);
     TSG.Canvas.annotations.changeScale(scaleFactor);
     TSG.Utils.redraw();
+    if(scaleFactor !== 1.5 && scaleFactor !== 1/1.5){
+      TSG.Utils.zoom()
+    }
   }
 
   TSG.Utils.redraw = function redraw(){
@@ -159,13 +109,12 @@ var OpenDANnotate = function(){
   }
 
   TSG.Utils.reset = function reset() {
-    TSG.Images.CurrentImage = TSG.Images.Regular;
-    TSG.Canvas.canvas.width = TSG.Images.Regular.canvasWidth;
-    TSG.Canvas.canvas.height = TSG.Images.Regular.canvasHeight;
+    TSG.Canvas.canvas.width = 880;
+    TSG.Canvas.canvas.height = 580;
 
     TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
     TSG.Utils.trackTransforms(TSG.Canvas.ctx);
-    TSG.Canvas.ctx.scale(TSG.Images.Regular.origScale.width,TSG.Images.Regular.origScale.height); //set the starting scale
+    TSG.Canvas.ctx.scale(.15,.15); //set the starting scale
     TSG.Canvas.ctx.clearRect (0,0,TSG.Canvas.canvas.width,TSG.Canvas.canvas.height);
 
     TSG.Utils.drawImage(TSG.Canvas.ctx);
@@ -182,6 +131,7 @@ var OpenDANnotate = function(){
     });
   }
 
+
   TSG.init = function(){
     var lastX=TSG.Canvas.canvas.width/2, lastY=TSG.Canvas.canvas.height/2;
     var dragStart, dragEnd, dragged;
@@ -197,14 +147,9 @@ var OpenDANnotate = function(){
     });
     TSG.Buttons.ZoomIn  = $('#zoomIn').on('click', function(){
       TSG.Utils.zoom(1.5);
-      TSG.Canvas.annotations.offsetX *= 1.5;
     });
     TSG.Buttons.ZoomOut = $('#zoomOut').on('click', function(){
-      if(TSG.Canvas.annotations.scale === 1){
-        return;
-      }
       TSG.Utils.zoom(1/1.5);
-      TSG.Canvas.annotations.offsetX *= 1/1.5
     });
 
     //set up events
@@ -243,14 +188,6 @@ var OpenDANnotate = function(){
       dragStart = null;
   	},false);
 
-
-    $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
-        var sound = document.getElementsByTagName('audio');
-        $.each(sound, function(index, audio){
-          audio.pause();
-          audio.currentTime = 0;
-        });
-    });
     TSG.Utils.showMousePosition();
   };
 
@@ -387,11 +324,8 @@ var OpenDANnotate = function(){
         var y1AxisWithOffset = (normalizedY1)+self.offsetY*1.1211;
         var y2AxisWithOffset = (normalizedY2)+self.offsetY*1.1211;
 
-        if(index === 0){
-          console.log("DEBUG annotations "+index);
-          console.log("x1:"+x1AxisWithOffset+" x2:"+x2AxisWithOffset);
-          console.log("y1:"+y1AxisWithOffset+" y2:"+y2AxisWithOffset);
-        }
+        console.log("x1:"+x1AxisWithOffset+" x2:"+x2AxisWithOffset);
+        console.log("y1:"+y1AxisWithOffset+" y2:"+y2AxisWithOffset);
 
         if(mouseX <= x2AxisWithOffset && mouseX >= x1AxisWithOffset){
           if(mouseY <= y2AxisWithOffset && mouseY >= y1AxisWithOffset){
