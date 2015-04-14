@@ -46,6 +46,9 @@ body {
   }
 }
 
+h2 {
+  font-family: arial;
+}
 /* Custom page footer */
 .footer {
   padding-top: 19px;
@@ -115,7 +118,6 @@ html {
   margin-left: 4%;
   margin-right: 4%;
   width: 65%;
-
 }
 
 #annotation-facts {
@@ -129,7 +131,7 @@ html {
   h3 {
     margin-left: auto;
     margin-right: auto;
-    font-family: cursive;
+    font-family: sans-serif;
   }
 }
 
