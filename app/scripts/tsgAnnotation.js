@@ -5,7 +5,8 @@ var OpenDANnotate = function(){
     Buttons : {},
     Events  : {},
     Config  : {},
-    Images   : {}
+    Images  : {},
+    Debug   : {}
   };
 
   TSG.Images.CurrentImage = {};
@@ -129,15 +130,13 @@ var OpenDANnotate = function(){
 
   TSG.Utils.zoom = function(scaleFactor){
     TSG.Images.CurrentImage = TSG.Images.Regular;
-    TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left');
-    TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right');
     // if(TSG.Canvas.annotations.scale >= 2.25){
     //   TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left-xl');
     //   TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-xl');
     //   TSG.Images.CurrentImage = TSG.Images.XLarge;
     // }
     // else
-    if(TSG.Canvas.annotations.scale === 1){
+    if(TSG.Canvas.annotations.scale === 1.5){
       TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left-lg');
       TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-lg');
       TSG.Images.CurrentImage = TSG.Images.Large;
@@ -156,15 +155,13 @@ var OpenDANnotate = function(){
   TSG.Utils.redraw = function redraw(){
     // Clear the entire canvas
     var p1 = TSG.Canvas.ctx.transformedPoint(0,0);
-    var p2 = TSG.Canvas.ctx.transformedPoint(TSG.Images.CurrentImage.canvasWidth,TSG.Images.CurrentImage.canvasHeight);
+    var p2 = TSG.Canvas.ctx.transformedPoint(TSG.Canvas.canvas.width,TSG.Canvas.canvas.height);
     TSG.Canvas.ctx.clearRect(p1.x,p1.y,p2.x-p1.x,p2.y-p1.y);
     TSG.Utils.drawImage(TSG.Canvas.ctx);
   }
 
   TSG.Utils.reset = function reset() {
     TSG.Images.CurrentImage = TSG.Images.Regular;
-    TSG.Canvas.annotatedImageLeft = document.getElementById('annotated-image-left');
-    TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right');
     TSG.Canvas.canvas.width = TSG.Images.Regular.canvasWidth;
     TSG.Canvas.canvas.height = TSG.Images.Regular.canvasHeight;
 
@@ -394,18 +391,17 @@ var OpenDANnotate = function(){
         var y1AxisWithOffset = (normalizedY1)+self.offsetY*1.1211;
         var y2AxisWithOffset = (normalizedY2)+self.offsetY*1.1211;
 
-        if(index === 0){
-          console.log("DEBUG annotations "+index);
-          console.log("x1:"+x1AxisWithOffset+" x2:"+x2AxisWithOffset);
-          console.log("y1:"+y1AxisWithOffset+" y2:"+y2AxisWithOffset);
-          console.log("mouseX:"+mouseX+" mouseY:"+mouseY);
-        }
+        // if(index === 0){
+        //   console.log("DEBUG annotations "+index);
+        //   console.log("x1:"+x1AxisWithOffset+" x2:"+x2AxisWithOffset);
+        //   console.log("y1:"+y1AxisWithOffset+" y2:"+y2AxisWithOffset);
+        //   console.log("mouseX:"+mouseX+" mouseY:"+mouseY);
+        // }
 
         if(mouseX <= x2AxisWithOffset && mouseX >= x1AxisWithOffset){
           if(mouseY <= y2AxisWithOffset && mouseY >= y1AxisWithOffset){
             if(flag === false){
               flag = index;
-              console.log('We good');
             }
           }
         }
