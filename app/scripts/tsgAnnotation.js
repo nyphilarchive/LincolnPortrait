@@ -208,7 +208,8 @@ var OpenDANnotate = function(){
     });
 
     //set up events
-    TSG.Events.mousedown = TSG.Canvas.canvas.addEventListener('mousedown',function(evt){
+    TSG.Events.mousedown = $('#c').mousedown(function(evt){
+      evt.preventDefault();
   	  //document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
   		mouseX = evt.offsetX || (evt.pageX - TSG.Canvas.canvas.offsetLeft);
       lastX = evt.offsetX || (evt.pageX - TSG.Canvas.canvas.offsetLeft);
@@ -217,8 +218,8 @@ var OpenDANnotate = function(){
 
     	dragStart = TSG.Canvas.ctx.transformedPoint(lastX,lastY);
   		dragged = false;
-  	},false);
-    TSG.Events.mousemove = TSG.Canvas.canvas.addEventListener('mousemove',function(evt){
+  	});
+    TSG.Events.mousemove = $('#c').mousemove(function(evt){
   		lastX = evt.offsetX || (evt.pageX - TSG.Canvas.canvas.offsetLeft);
   		lastY = evt.offsetY || (evt.pageY - TSG.Canvas.canvas.offsetTop);
   		dragged = true;
@@ -227,22 +228,22 @@ var OpenDANnotate = function(){
         TSG.Canvas.ctx.translate(pt.x-dragStart.x,pt.y-dragStart.y);
         TSG.Utils.redraw();
   		}
-  	},false);
-    TSG.Events.mousemove = TSG.Canvas.canvas.addEventListener('mouseup',function(evt){
-      somelastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
-      somelastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+  	});
+    TSG.Events.mousemove = $('#c').mouseup(function(evt){
+      somelastX = evt.offsetX || (evt.pageX - TSG.Canvas.canvas.offsetLeft);
+      somelastY = evt.offsetY || (evt.pageY - TSG.Canvas.canvas.offsetTop);
 
       TSG.Canvas.annotations.offsetX += (somelastX - mouseX);
       TSG.Canvas.annotations.offsetY += (somelastY - mouseY);
       if(dragged === false){
-        var index = TSG.Canvas.annotations.isInBounds(evt.offsetX,evt.offsetY);
+        var index = TSG.Canvas.annotations.isInBounds(somelastX,somelastY);
         if(index !== false){
           TSG.Canvas.annotations.toggleAnnotation(index);
         }
       }
 
       dragStart = false;;
-  	},false);
+  	});
 
 
     $('.bs-example-modal-lg').on('hidden.bs.modal', function () {
@@ -392,12 +393,14 @@ var OpenDANnotate = function(){
           console.log("DEBUG annotations "+index);
           console.log("x1:"+x1AxisWithOffset+" x2:"+x2AxisWithOffset);
           console.log("y1:"+y1AxisWithOffset+" y2:"+y2AxisWithOffset);
+          console.log("mouseX:"+mouseX+" mouseY:"+mouseY);
         }
 
         if(mouseX <= x2AxisWithOffset && mouseX >= x1AxisWithOffset){
           if(mouseY <= y2AxisWithOffset && mouseY >= y1AxisWithOffset){
             if(flag === false){
               flag = index;
+              console.log('We good');
             }
           }
         }

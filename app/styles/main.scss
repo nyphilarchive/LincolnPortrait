@@ -114,6 +114,8 @@ html {
 #annotation-container {
   margin-left: 4%;
   margin-right: 4%;
+  width: 65%;
+
 }
 
 #annotation-facts {
@@ -186,6 +188,10 @@ audio {
   border: none;
   font-size:30px;
   padding: 0px;
+  &:focus {
+    border:none;
+    outline: none;
+  }
 }
 
 .tsg-close {
