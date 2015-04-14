@@ -314,10 +314,18 @@ var OpenDANnotate = function(){
         var scaledY1 = centerOfCanvas.y - (centerOfCanvas.y-annotation.y1)*self.scale;
         var scaledY2 = centerOfCanvas.y - (centerOfCanvas.y-annotation.y2)*self.scale;
 
-        var x1AxisWithOffset = (scaledX1)+self.offsetX*1.1211;
-        var x2AxisWithOffset = (scaledX2)+self.offsetX*1.1211;
-        var y1AxisWithOffset = (scaledY1)+self.offsetY*1.1211;
-        var y2AxisWithOffset = (scaledY2)+self.offsetY*1.1211;
+        var normalizedX1 = scaledX1*($('#c').width()/TSG.Canvas.OGCanvasSize.width);
+        var normalizedX2 = scaledX2*($('#c').width()/TSG.Canvas.OGCanvasSize.width);
+        var normalizedY1 = scaledY1*($('#c').height()/TSG.Canvas.OGCanvasSize.height);
+        var normalizedY2 = scaledY2*($('#c').height()/TSG.Canvas.OGCanvasSize.height);
+
+        var x1AxisWithOffset = (normalizedX1)+self.offsetX*1.1211;
+        var x2AxisWithOffset = (normalizedX2)+self.offsetX*1.1211;
+        var y1AxisWithOffset = (normalizedY1)+self.offsetY*1.1211;
+        var y2AxisWithOffset = (normalizedY2)+self.offsetY*1.1211;
+
+        console.log("x1:"+x1AxisWithOffset+" x2:"+x2AxisWithOffset);
+        console.log("y1:"+y1AxisWithOffset+" y2:"+y2AxisWithOffset);
 
         if(mouseX <= x2AxisWithOffset && mouseX >= x1AxisWithOffset){
           if(mouseY <= y2AxisWithOffset && mouseY >= y1AxisWithOffset){
