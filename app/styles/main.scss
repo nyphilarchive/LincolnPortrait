@@ -181,6 +181,7 @@ audio {
   border-radius: 0;
   margin-top:25%;
   display:none;
+  text-align: left;
 }
 
 .tsg-modal-close-btn {
@@ -209,6 +210,10 @@ audio {
 .modal-header {
   border:none;
   padding: 7px;
+  float:left;
+}
+.modal-title h4 {
+  font-size: 30px !important;
 }
 
 .tsg-credit{
@@ -218,12 +223,14 @@ audio {
 }
 
 .tsg-header-title{
-  font-size: smaller;
+  font-size: 20px;
 }
 
 .tsg-caption-content {
   font-size: x-large;
   width: 75%;
+  padding-top: 50px;
+  font-style: italic;
 }
 
 .tsg-modal-btn {
