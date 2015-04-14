@@ -3,6 +3,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+.glyphicon{
+  font-size: 20px;
+}
+p.viewscore{
+  padding-top: 20px;
+  font-style: italic;
+
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -93,9 +102,9 @@ body {
 
 body {
   padding: 0px;
-  max-height: 820px;
+  max-height: auto;
   display:flex;
-  background-color:#404040;
+  background-color:#000000;
 }
 
 html {
@@ -106,9 +115,11 @@ html {
 
 #annotation-facts {
   height: 100%;
-  background-color:#404040 ;
+  background-color:#333333 ;
   color:white;
   padding: 25px;
+  position: absolute;
+  right: 0;
 
   h3 {
     margin-left: auto;
@@ -125,7 +136,7 @@ html {
 }
 
 canvas {
-  border: white 1px solid;
+  /*border: white 1px solid;*/
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -214,9 +225,44 @@ audio {
 
 .tsg-program-link {
   float: right;
-  color: red;
+  /*color: red;*/
 }
 
-canvas {
-  background-color: white;
+a, a:hover, a:visited, a:link {
+color: #de3831;
+text-decoration: none;
+
+}
+
+.sidebar-footer{
+  padding-top: 100px;
+  text-align: center;
+
+}
+
+.sidebar-footer img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sidebar-footer i {
+  padding: 30px 3px 3px 10px;
+  font-size: 24px;
+}
+
+.image-annotations{
+  text-align: center;
+}
+.image-annotations button.btn{
+  background: transparent;
+    color: #F2F2F2;
+    border: 0;
+}
+
+.image-annotations button span{
+  font-size: 30px;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
 }
