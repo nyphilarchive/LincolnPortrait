@@ -217,10 +217,10 @@ audio {
 
 .modal-header {
   border:none;
-  padding: 7px;
-  float:left;
+  padding: 7px 0 0 20px;
+
 }
-.modal-title h4 {
+h4.modal-title {
   font-size: 30px !important;
 }
 
@@ -237,7 +237,6 @@ audio {
 .tsg-caption-content {
   font-size: x-large;
   width: 75%;
-  padding-top: 50px;
   font-style: italic;
 }
 
