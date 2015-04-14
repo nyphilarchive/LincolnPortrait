@@ -95,9 +95,6 @@ var OpenDANnotate = function(){
     TSG.Canvas.ctx.translate(-pt.x,-pt.y);
     TSG.Canvas.annotations.changeScale(scaleFactor);
     TSG.Utils.redraw();
-    if(scaleFactor !== 1.5 && scaleFactor !== 1/1.5){
-      TSG.Utils.zoom()
-    }
   }
 
   TSG.Utils.redraw = function redraw(){
