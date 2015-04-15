@@ -1,8 +1,8 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 $fa-font-path: "../bower_components/components-font-awesome/fonts/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss",
- "components-font-awesome/scss/font-awesome.scss";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
 .glyphicon{
   font-size: 20px;
@@ -21,10 +21,31 @@ p.viewscore{
 }
 
 /* Space out content a bit */
+html{
+
+    position: relative;
+    min-height: 100%;
+}
+
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  margin-bottom: 75px;
 }
+
+/*Footer*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 75px;
+  border: none !important;
+  font-size: 12px;
+
+  a{
+    color: inherit !important;
+  }
+}
+
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
