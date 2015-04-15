@@ -251,7 +251,7 @@ h4.modal-title {
 }
 
 .tsg-caption-content {
-  font-size: x-large;
+  font-size: large;
   width: 75%;
   font-style: italic;
 }
@@ -286,6 +286,11 @@ text-decoration: none;
   padding: 30px 3px 3px 10px;
   font-size: 24px;
   color: #fff;
+}
+
+.sidebar-footer p, .sidebar-footer p a {
+  color: #666;
+  font-size: 12px !important;
 }
 
 .image-annotations{
