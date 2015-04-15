@@ -40,8 +40,7 @@ body {
   height: 75px;
   border: none !important;
   font-size: 12px;
-  z-index; 1;
-  
+
   a{
     color: inherit !important;
   }
@@ -144,7 +143,7 @@ html {
 }
 
 #annotation-facts {
-  height: auto;
+  height: 100%;
   background-color:#333333 ;
   color:white;
   padding: 25px;
@@ -310,4 +309,10 @@ text-decoration: none;
 
 .btn:focus,.btn:active {
    outline: none !important;
+}
+
+.subtext{
+  font-style:italic;
+  color:#ffffff; 
+  font-size: 18px;
 }
