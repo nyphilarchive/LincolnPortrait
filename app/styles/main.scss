@@ -40,7 +40,8 @@ body {
   height: 75px;
   border: none !important;
   font-size: 12px;
-
+  z-index; 1;
+  
   a{
     color: inherit !important;
   }
@@ -143,7 +144,7 @@ html {
 }
 
 #annotation-facts {
-  height: 100%;
+  height: auto;
   background-color:#333333 ;
   color:white;
   padding: 25px;
