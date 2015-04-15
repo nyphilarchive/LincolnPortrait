@@ -10,7 +10,6 @@ $fa-font-path: "../bower_components/components-font-awesome/fonts/";
 p.viewscore{
   padding-top: 20px;
   font-style: italic;
-
 }
 
 .browsehappy {
@@ -341,12 +340,9 @@ text-decoration: none;
   .modal-content {
     width: 95%;
   }
-
 }
 
 .tsg-container{
-  // margin-left: 4%;
-  // margin-right: 4%;
   width: 100%;
 }
 
@@ -363,4 +359,11 @@ li > a {
 
 #annotation-15 {
   width:100%;
+}
+
+.row div {
+    -webkit-transition: width 0.3s ease;
+    -moz-transition: width 0.3s ease;
+    -o-transition: width 0.3s ease;
+    transition: width 0.3s ease;
 }

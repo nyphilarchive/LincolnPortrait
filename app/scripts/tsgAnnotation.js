@@ -26,12 +26,12 @@ var OpenDANnotate = function(){
 
   TSG.Images.Large = {
     origScale : {
-      width: .487,
-      height: .487
+      width: .335,
+      height: .335
     },
     leftId: "annotated-image-left-lg",
     rightId: "annotated-image-right-lg",
-    rightImageOffset: 25,
+    rightImageOffset: 100,
     canvasWidth : 855,
     canvasHeight: 600,
     movementScale: .99
@@ -175,38 +175,24 @@ var OpenDANnotate = function(){
 
   TSG.Utils.reset = function reset() {
 
+    TSG.Canvas.canvas.height = TSG.Images.CurrentImage.canvasHeight;
     if(TSG.Utils.mobileCheck() === true){
-      TSG.Images.CurrentImage = TSG.Images.Regular;
-      TSG.Canvas.canvas.width = TSG.Images.Regular.canvasWidth/2;
-      TSG.Canvas.canvas.height = TSG.Images.Regular.canvasHeight;
-
-      TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
-      TSG.Utils.trackTransforms(TSG.Canvas.ctx);
-      TSG.Canvas.ctx.scale(TSG.Images.Regular.origScale.width,TSG.Images.Regular.origScale.height); //set the starting scale
-      TSG.Canvas.ctx.clearRect (0,0,TSG.Canvas.canvas.width,TSG.Canvas.canvas.height);
-
-      TSG.Utils.drawImage(TSG.Canvas.ctx);
-
-      TSG.Canvas.annotations.offsetX = 0;
-      TSG.Canvas.annotations.offsetY = 0;
-      TSG.Canvas.annotations.scale = 1;
+      TSG.Canvas.canvas.width = TSG.Images.CurrentImage.canvasWidth/2;
     }
     else {
-      TSG.Images.CurrentImage = TSG.Images.Regular;
-      TSG.Canvas.canvas.width = TSG.Images.Regular.canvasWidth;
-      TSG.Canvas.canvas.height = TSG.Images.Regular.canvasHeight;
-
-      TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
-      TSG.Utils.trackTransforms(TSG.Canvas.ctx);
-      TSG.Canvas.ctx.scale(TSG.Images.Regular.origScale.width,TSG.Images.Regular.origScale.height); //set the starting scale
-      TSG.Canvas.ctx.clearRect (0,0,TSG.Canvas.canvas.width,TSG.Canvas.canvas.height);
-
-      TSG.Utils.drawImage(TSG.Canvas.ctx);
-
-      TSG.Canvas.annotations.offsetX = 0;
-      TSG.Canvas.annotations.offsetY = 0;
-      TSG.Canvas.annotations.scale = 1;
+      TSG.Canvas.canvas.width = TSG.Images.CurrentImage.canvasWidth;
     }
+
+    TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
+    TSG.Utils.trackTransforms(TSG.Canvas.ctx);
+    TSG.Canvas.ctx.scale(TSG.Images.CurrentImage.origScale.width,TSG.Images.CurrentImage.origScale.height); //set the starting scale
+    TSG.Canvas.ctx.clearRect (0,0,TSG.Canvas.canvas.width,TSG.Canvas.canvas.height);
+
+    TSG.Utils.drawImage(TSG.Canvas.ctx);
+
+    TSG.Canvas.annotations.offsetX = 0;
+    TSG.Canvas.annotations.offsetY = 0;
+    TSG.Canvas.annotations.scale = 1;
   }
 
   TSG.Utils.showMousePosition = function(){
@@ -222,11 +208,14 @@ var OpenDANnotate = function(){
     var mouseX, mouseY = 0;
     TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
     TSG.Utils.trackTransforms(TSG.Canvas.ctx);
+    var dirtybit = 0;
+    TSG.Images.CurrentImage = TSG.Images.Regular;
 
     TSG.Utils.reset();
 
     //setup buttons
     TSG.Buttons.Reset = $('#reset').on('click', function(){
+      TSG.Images.CurrentImage = TSG.Images.Regular;
       TSG.Utils.reset();
     });
     TSG.Buttons.ZoomIn  = $('#zoomIn').on('click', function(){
@@ -241,8 +230,10 @@ var OpenDANnotate = function(){
       TSG.Canvas.annotations.offsetX *= 1/1.5
     });
     TSG.Buttons.FullScreen = $('#fullscreen-btn').on('click', function(){
-      $('#image-title').toggle();
-      $('#annotation-facts').toggle();
+      if(dirtybit === 0){
+        $('#image-title').toggle(300);
+        $('#annotation-facts').toggle(300);
+      }
       $('#annotation-container').toggleClass('fullscreen-toggle', 'tsg-container');
       $('#fullscreen-btn > span').toggleClass('glyphicon-resize-small','glyphicon-resize-full');
       $('#annotation-section').toggleClass('col-md-10','col-md-8');
@@ -252,6 +243,20 @@ var OpenDANnotate = function(){
       var mouseX, mouseY = 0;
       TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
       TSG.Utils.trackTransforms(TSG.Canvas.ctx);
+      if(dirtybit === 0){
+        TSG.Images.CurrentImage = TSG.Images.Large;
+        TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-lg');
+        TSG.Canvas.annotatedImageLeft  = document.getElementById('annotated-image-left-lg');
+        dirtybit = 1;
+      }
+      else {
+        TSG.Images.CurrentImage = TSG.Images.Regular;
+        TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right');
+        TSG.Canvas.annotatedImageLeft  = document.getElementById('annotated-image-left');
+        $('#image-title').toggle(300);
+        $('#annotation-facts').toggle(300);
+        dirtybit = 0;
+      }
       TSG.Utils.reset();
     });
 
@@ -341,10 +346,8 @@ var OpenDANnotate = function(){
         $('#annotation-'+index).hide();
       });
       TSG.Canvas.annotations.toggleAnnotation(index);
-      
+
     });
-
-
 
     //TSG.Utils.showMousePosition();
   };
@@ -493,10 +496,10 @@ var OpenDANnotate = function(){
           var normalizedY2 = scaledY2*($('#c').height()/TSG.Canvas.OGCanvasSize.height);
         }
 
-        var x1AxisWithOffset = (normalizedX1)+self.offsetX*TSG.Images.Regular.movementScale;
-        var x2AxisWithOffset = (normalizedX2)+self.offsetX*TSG.Images.Regular.movementScale;
-        var y1AxisWithOffset = (normalizedY1)+self.offsetY*TSG.Images.Regular.movementScale;
-        var y2AxisWithOffset = (normalizedY2)+self.offsetY*TSG.Images.Regular.movementScale;
+        var x1AxisWithOffset = (normalizedX1)+self.offsetX*TSG.Images.CurrentImage.movementScale;
+        var x2AxisWithOffset = (normalizedX2)+self.offsetX*TSG.Images.CurrentImage.movementScale;
+        var y1AxisWithOffset = (normalizedY1)+self.offsetY*TSG.Images.CurrentImage.movementScale;
+        var y2AxisWithOffset = (normalizedY2)+self.offsetY*TSG.Images.CurrentImage.movementScale;
 
         // if(index === 0){
         //   console.log("DEBUG annotations "+index);
