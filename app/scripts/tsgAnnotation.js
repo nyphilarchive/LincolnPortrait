@@ -360,6 +360,12 @@ var OpenDANnotate = function(){
         "x2": 809,
         "y1": 66,
         "y2": 87
+      },
+      {
+        "x1": 0,
+        "x2": 400,
+        "y1": 0,
+        "y2": 650
       }
     ],
     changeScale : function(scaleFactor){
