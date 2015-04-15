@@ -245,8 +245,12 @@ var OpenDANnotate = function(){
       $('#annotation-facts').toggle();
       $('#annotation-container').toggleClass('fullscreen-toggle', 'tsg-container');
       $('#fullscreen-btn > span').toggleClass('glyphicon-resize-small','glyphicon-resize-full');
+      var lastX=TSG.Canvas.canvas.width/2, lastY=TSG.Canvas.canvas.height/2;
+      var dragStart, dragEnd, dragged;
+      var mouseX, mouseY = 0;
+      TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
+      TSG.Utils.trackTransforms(TSG.Canvas.ctx);
       TSG.Utils.reset();
-
     });
 
     var mouseUpAndDown = false;
