@@ -136,12 +136,6 @@ html {
   height: 100%;
 }
 
-#annotation-container {
-  margin-left: 4%;
-  margin-right: 4%;
-  width: 65%;
-}
-
 #annotation-facts {
   height: 100%;
   background-color:#333333 ;
@@ -313,6 +307,46 @@ text-decoration: none;
 
 .subtext{
   font-style:italic;
-  color:#ffffff; 
+  color:#ffffff;
   font-size: 18px;
+}
+
+@media (max-width: 600px){
+  #annotation-section {
+    background-color: black;
+  }
+
+  #annotation-container {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%
+  }
+
+  #images-container {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    padding-top: 4px;
+  }
+
+  .tsg-caption-content {
+    font-size: medium;
+    width: 95%;
+
+  }
+  .modal-content {
+    width: 95%;
+  }
+
+}
+
+.tsg-container{
+  margin-left: 4%;
+  margin-right: 4%;
+  width: 65%;
+}
+.fullscreen-toggle {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }

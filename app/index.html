@@ -26,18 +26,18 @@
         <a href="http://archives.nyphil.org" target="_blank">
           <img class="pull-left" src="images/levy_logo.jpg" />
         </a>
-          
+
           <span class="pull-right">Built with the help of <a href="http://tsgrp.com" target="_blank">Technology Services Group</a>
             <br>
-          Copyright <script>document.write(new Date().getFullYear())</script> New York Philharmonic. All rights reserved. 
+          Copyright <script>document.write(new Date().getFullYear())</script> New York Philharmonic. All rights reserved.
           <br>Contact Us: <a href="mailto:DigitalArchives@nyphil.org">DigitalArchives@nyphil.org</a>
         </span>
-      
+
     </footer> -->
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div id="annotation-container" >
+    <div id="annotation-container" class="tsg-container">
       <div id="annotation-section" class="col-md-12">
         <div id="image-title">
           <h2><em>A Lincoln Portrait</em> &ndash; From the New York Philharmonic Archives</h2>
@@ -385,7 +385,6 @@
                       </audio>
                     </div>
                   </div>
-
                 </div>
               </div>
 
@@ -394,8 +393,8 @@
             <canvas id="c"></canvas>
             <img id="annotated-image-left" src="images/LincolnLeft-reg.jpg" height="500px" width="400px" style="display:none"/>
             <img id="annotated-image-right" src="images/LincolnRight-reg.jpg" height="500px" width="400px" style="display:none"/>
-            <img id="annotated-image-left-lg" src="images/LincolnLeft-lg.jpg" height="500px" width="400px" style="display:none"/>
-            <img id="annotated-image-right-lg" src="images/LincolnRight-lg.jpg" height="500px" width="400px" style="display:none"/>
+            <!-- <img id="annotated-image-left-lg" src="images/LincolnLeft-lg.jpg" height="500px" width="400px" style="display:none"/>
+            <img id="annotated-image-right-lg" src="images/LincolnRight-lg.jpg" height="500px" width="400px" style="display:none"/> -->
             <!-- <img id="annotated-image-left-xl" src="images/LincolnLeft-xl.jpg" height="500px" width="400px" style="display:none"/>
             <img id="annotated-image-right-xl" src="images/LincolnRight-xl.jpg" height="500px" width="400px" style="display:none"/> -->
             <br/>
@@ -409,6 +408,10 @@
             <button id="reset" class="btn btn-default btn-lg">
                 <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             </button> -->
+
+            <button id="fullscreen-btn" class="btn btn-default btn-lg">
+              <span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
       </div>
@@ -429,11 +432,11 @@
         <p class="viewscore"> <span class ="col-md-1 glyphicon glyphicon-share" aria-hidden="true"></span>
 
         <a class="col-md-10" href="http://archives.nyphil.org/index.php/artifact/77ca87f5-4ec7-4001-9da0-ca1619d036ed/fullview" target="_blank">View entire score in the <br />Leon Levy Digital Archives</a></p>
-        
+
 
 
         <div class="sidebar-footer"><img src="images/nyphil_logo_white.png" />
-          
+
         <a href="#" onclick="return fbs_click()" target="_blank" title="Share This on Facebook">
           <i class="fa fa-facebook"></i>
         </a>
@@ -445,11 +448,11 @@
           <a href="http://archives.nyphil.org" target="_blank">
             <img class="img-responsive" style="max-width: 300px;" src="images/levy_logo.png" />
           </a>
-          </p> 
-          <p> 
+          </p>
+          <p>
             Built with the help of <a href="http://tsgrp.com" target="_blank">Technology Services Group</a>
               <br>
-            Copyright <script>document.write(new Date().getFullYear())</script> New York Philharmonic. All rights reserved. 
+            Copyright <script>document.write(new Date().getFullYear())</script> New York Philharmonic. All rights reserved.
             <br>Contact Us: <a href="mailto:DigitalArchives@nyphil.org">DigitalArchives@nyphil.org</a>
           </p>
 
@@ -483,7 +486,7 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
-    
+
     <!--Twitter button -->
     <script>
       $('.popup').click(function(event) {
@@ -497,9 +500,9 @@
                      ',height=' + height +
                      ',top='    + top    +
                      ',left='   + left;
-        
+
         window.open(url, 'twitter', opts);
-     
+
         return false;
       });
     </script>
