@@ -245,6 +245,8 @@ var OpenDANnotate = function(){
       $('#annotation-facts').toggle();
       $('#annotation-container').toggleClass('fullscreen-toggle', 'tsg-container');
       $('#fullscreen-btn > span').toggleClass('glyphicon-resize-small','glyphicon-resize-full');
+      $('#annotation-section').toggleClass('col-md-10','col-md-8');
+      $('#annotation-section').toggleClass('col-md-offset-1');
       var lastX=TSG.Canvas.canvas.width/2, lastY=TSG.Canvas.canvas.height/2;
       var dragStart, dragEnd, dragged;
       var mouseX, mouseY = 0;
@@ -306,6 +308,44 @@ var OpenDANnotate = function(){
           TSG.Canvas.canvas = document.getElementById('c');
         }
     });
+
+    $('a').click(function(evt){
+      console.log(evt.currentTarget.innerText);
+      var text = evt.currentTarget.innerText;
+      var index = -1;
+      if(text === "Aaron Copland"){
+        index = 1;
+      }
+      else if(text === "Marian Anderson"){
+        index = 11;
+      }
+      else if(text === "Walter Cronkite"){
+        index = 12;
+      }
+      else if(text === "Carl Sandburg"){
+        index = 5;
+      }
+      else if(text === "Henry Fonda"){
+        index = 0;
+      }
+      else if(text === "William Warfield"){
+        index = 14;
+      }
+      else if(text === "John Lindsay"){
+        index = 10;
+      }
+      else if(text === "E. G. Marshall"){
+        index = 3;
+      }
+      $.each(TSG.Canvas.annotations.annotationSet, function(index, annotation){
+        $('#annotation-'+index).hide();
+      });
+      TSG.Canvas.annotations.toggleAnnotation(index);
+      
+    });
+
+
+
     //TSG.Utils.showMousePosition();
   };
 

@@ -130,6 +130,7 @@ body {
   max-height: auto;
   display:flex;
   background-color:#000000;
+  margin-bottom: 0px;
 }
 
 html {
@@ -141,8 +142,6 @@ html {
   background-color:#333333 ;
   color:white;
   padding: 25px;
-  position: absolute;
-  right: 0;
 
   p {
     font-size: 17px;
@@ -199,7 +198,7 @@ audio {
   background-color: black;
   color:white;
   border-radius: 0;
-  margin-top:25%;
+  margin-top:10%;
   display:none;
   text-align: left;
 }
@@ -346,13 +345,22 @@ text-decoration: none;
 }
 
 .tsg-container{
-  margin-left: 4%;
-  margin-right: 4%;
-  width: 65%;
+  // margin-left: 4%;
+  // margin-right: 4%;
+  width: 100%;
 }
+
 .fullscreen-toggle {
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
-  max-height: 95%
+  width: 100%;
+  max-height: 85%;
+}
+
+li > a {
+  cursor:pointer;
+}
+
+#annotation-15 {
+  width:100%;
 }
