@@ -9,6 +9,8 @@ var OpenDANnotate = function(){
     Debug   : {}
   };
 
+  $("body").addClass("loading");
+
   TSG.Images.CurrentImage = {};
 
   TSG.Images.Regular = {
@@ -346,8 +348,8 @@ var OpenDANnotate = function(){
         $('#annotation-'+index).hide();
       });
       TSG.Canvas.annotations.toggleAnnotation(index);
-
     });
+    $("body").removeClass("loading");
 
     //TSG.Utils.showMousePosition();
   };
