@@ -23,9 +23,7 @@ var OpenDANnotate = function(){
     rightImageOffset: 25,
     canvasWidth : 855,
     canvasHeight: 580,
-    movementScale: .99,
-    annotatedImageRight: new Image(),
-    annotatedImageLeft: new Image()
+    movementScale: .99
   };
 
   TSG.Images.Large = {
@@ -38,9 +36,7 @@ var OpenDANnotate = function(){
     rightImageOffset: 100,
     canvasWidth : 855,
     canvasHeight: 600,
-    movementScale: .99,
-    annotatedImageRight: new Image(),
-    annotatedImageLeft: new Image()
+    movementScale: .99
   };
 
   TSG.Images.XLarge = {
@@ -57,39 +53,94 @@ var OpenDANnotate = function(){
 
   TSG.Images.ImageDerivatives = {
       500: {
-        rightSrc: 'images/LincolnRight_0500h.jpg',
+        righSrc: 'images/LincolnRight_0500h.jpg',
         leftSrc: 'images/LincolnLeft_0500h.jpg'
       },
       580: {
-        rightSrc: 'images/LincolnRight_0580h.jpg',
+        righSrc: 'images/LincolnRight_0580h.jpg',
         leftSrc: 'images/LincolnLeft_0580h.jpg'
       },
       750: {
-        rightSrc: 'images/LincolnRight_0750h.jpg',
+        righSrc: 'images/LincolnRight_0750h.jpg',
         leftSrc: 'images/LincolnLeft_0750h.jpg'
       },
       1000: {
-        rightSrc: 'images/LincolnRight_1000h.jpg',
+        righSrc: 'images/LincolnRight_1000h.jpg',
         leftSrc: 'images/LincolnLeft_1000h.jpg'
       },
       1200: {
-        rightSrc: 'images/LincolnRight_1200h.jpg',
+        righSrc: 'images/LincolnRight_1200h.jpg',
         leftSrc: 'images/LincolnLeft_1200h.jpg'
       },
       1400: {
-        rightSrc: 'images/LincolnRight_1400h.jpg',
+        righSrc: 'images/LincolnRight_1400h.jpg',
         leftSrc: 'images/LincolnLeft_1400h.jpg'
       },
       1600: {
-        rightSrc: 'images/LincolnRight_1600h.jpg',
+        righSrc: 'images/LincolnRight_1600h.jpg',
         leftSrc: 'images/LincolnLeft_1600h.jpg'
       },
       1800: {
-        rightSrc: 'images/LincolnRight_1800h.jpg',
+        righSrc: 'images/LincolnRight_1800h.jpg',
         leftSrc: 'images/LincolnLeft_1800h.jpg'
       }
   }
 
+  // TSG.Utils.trackTransforms = function trackTransforms(ctx){
+  // 	var svg = document.createElementNS("http://www.w3.org/2000/svg",'svg');
+  // 	var xform = svg.createSVGMatrix();
+  // 	ctx.getTransform = function(){ return xform; };
+  //
+  // 	var savedTransforms = [];
+  // 	var save = ctx.save;
+  // 	ctx.save = function(){
+  // 		savedTransforms.push(xform.translate(0,0));
+  // 		return save.call(ctx);
+  // 	};
+  // 	var restore = ctx.restore;
+  // 	ctx.restore = function(){
+  // 		xform = savedTransforms.pop();
+  // 		return restore.call(ctx);
+  // 	};
+  //
+  // 	var scale = ctx.scale;
+  // 	ctx.scale = function(sx,sy){
+  // 		xform = xform.scaleNonUniform(sx,sy);
+  // 		return scale.call(ctx,sx,sy);
+  // 	};
+  // 	var rotate = ctx.rotate;
+  // 	ctx.rotate = function(radians){
+  // 		xform = xform.rotate(radians*180/Math.PI);
+  // 		return rotate.call(ctx,radians);
+  // 	};
+  // 	var translate = ctx.translate;
+  // 	ctx.translate = function(dx,dy){
+  // 		xform = xform.translate(dx,dy);
+  // 		return translate.call(ctx,dx,dy);
+  // 	};
+  // 	var transform = ctx.transform;
+  // 	ctx.transform = function(a,b,c,d,e,f){
+  // 		var m2 = svg.createSVGMatrix();
+  // 		m2.a=a; m2.b=b; m2.c=c; m2.d=d; m2.e=e; m2.f=f;
+  // 		xform = xform.multiply(m2);
+  // 		return transform.call(ctx,a,b,c,d,e,f);
+  // 	};
+  // 	var setTransform = ctx.setTransform;
+  // 	ctx.setTransform = function(a,b,c,d,e,f){
+  // 		xform.a = a;
+  // 		xform.b = b;
+  // 		xform.c = c;
+  // 		xform.d = d;
+  // 		xform.e = e;
+  // 		xform.f = f;
+  // 		return setTransform.call(ctx,a,b,c,d,e,f);
+  // 	};
+  // 	var pt  = svg.createSVGPoint();
+  // 	ctx.transformedPoint = function(x,y){
+  // 		pt.x=x; pt.y=y;
+  // 		return pt.matrixTransform(xform.inverse());
+  // 	}
+  // };
 
   TSG.Utils.getMousePos = function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
@@ -158,6 +209,9 @@ var OpenDANnotate = function(){
     }
 
     TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
+  //  TSG.Utils.trackTransforms(TSG.Canvas.ctx);
+    //TSG.Canvas.ctx.scale(TSG.Images.CurrentImage.origScale.width,TSG.Images.CurrentImage.origScale.height); //set the starting scale
+    //TSG.Canvas.ctx.clearRect (0,0,TSG.Canvas.canvas.width,TSG.Canvas.canvas.height);
 
     TSG.Utils.drawImage(TSG.Canvas.ctx);
 
@@ -178,6 +232,7 @@ var OpenDANnotate = function(){
     var dragStart, dragEnd, dragged;
     var mouseX, mouseY = 0;
     TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
+    //TSG.Utils.trackTransforms(TSG.Canvas.ctx);
     var dirtybit = 0;
     TSG.Images.CurrentImage = TSG.Images.Regular;
 
@@ -212,16 +267,17 @@ var OpenDANnotate = function(){
       var dragStart, dragEnd, dragged;
       var mouseX, mouseY = 0;
       TSG.Canvas.ctx = TSG.Canvas.canvas.getContext('2d');
+      //TSG.Utils.trackTransforms(TSG.Canvas.ctx);
       if(dirtybit === 0){
         TSG.Images.CurrentImage = TSG.Images.Large;
-        TSG.Canvas.annotatedImageRight = TSG.Images.Large.annotatedImageRight;
-        TSG.Canvas.annotatedImageLeft  = TSG.Images.Large.annotatedImageLeft;
+        TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-lg');
+        TSG.Canvas.annotatedImageLeft  = document.getElementById('annotated-image-left-lg');
         dirtybit = 1;
       }
       else {
         TSG.Images.CurrentImage = TSG.Images.Regular;
-        TSG.Canvas.annotatedImageRight =   TSG.Images.Regular.annotatedImageRight;
-        TSG.Canvas.annotatedImageLeft  =   TSG.Images.Regular.annotatedImageRight;
+        TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right');
+        TSG.Canvas.annotatedImageLeft  = document.getElementById('annotated-image-left');
         $('#image-title').toggle(300);
         $('#annotation-facts').toggle(300);
         dirtybit = 0;
@@ -248,6 +304,12 @@ var OpenDANnotate = function(){
     TSG.Events.mousemove = $('#c').mousemove(function(evt){
   		lastX = evt.offsetX || (evt.pageX - TSG.Canvas.canvas.offsetLeft);
   		lastY = evt.offsetY || (evt.pageY - TSG.Canvas.canvas.offsetTop);
+  		dragged = true;
+  		// if (dragStart){
+  		// 	var pt = TSG.Canvas.ctx.transformedPoint(lastX,lastY);
+      //   TSG.Canvas.ctx.translate(pt.x-dragStart.x,pt.y-dragStart.y);
+      //   TSG.Utils.redraw();
+  		// }
   	});
     TSG.Events.mouseup = $('#c').mouseup(function(evt){
       somelastX = evt.offsetX || (evt.pageX - TSG.Canvas.canvas.offsetLeft);
@@ -262,6 +324,7 @@ var OpenDANnotate = function(){
         }
       }
       mouseUpAndDown = false;
+      dragStart = false;;
   	});
 
 
@@ -317,47 +380,12 @@ var OpenDANnotate = function(){
   TSG.Canvas.canvas = document.getElementById('c');
 
   var imageObj = new Image();
-  var windowHeight = $(window).height();
-
+  // TSG.Canvas.annotatedImageRight = document.getElementById('annotated-image-right-lg');
+  // TSG.Canvas.annotatedImageLeft  = document.getElementById('annotated-image-left-lg');
   TSG.Canvas.annotatedImageRight = new Image();
   TSG.Canvas.annotatedImageLeft  = new Image();
-
-  if(windowHeight < 750){
-    TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['580'].rightSrc;
-    TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['580'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['750'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['750'].leftSrc;
-  }
-  else if(windowHeight < 1000){
-    TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['750'].rightSrc;
-    TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['750'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1000'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1000'].leftSrc;
-  }
-  else if(windowHeight < 1200){
-    TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['1000'].rightSrc;
-    TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['1000'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1200'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1200'].leftSrc;
-  }
-   if(windowHeight < 1400){
-    TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['1200'].rightSrc;
-    TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['1200'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1400'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1400'].leftSrc;
-  }
-  else if(windowHeight < 1600){
-    TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['1400'].rightSrc;
-    TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['1400'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1600'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1600'].leftSrc;
-  }
-  else if(windowHeight < 1800){
-    TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['1600'].rightSrc;
-    TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['1600'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1800'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1800'].leftSrc;
-  }
+  TSG.Canvas.annotatedImageRight.src = 'images/LincolnRight_0580h.jpg';
+  TSG.Canvas.annotatedImageLeft.src = 'images/LincolnLeft_0580h.jpg';
 
   TSG.Canvas.OGCanvasSize = {
     //you need to set the orignal height of the canvas when annotations where done
