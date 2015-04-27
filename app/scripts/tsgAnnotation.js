@@ -221,7 +221,7 @@ var OpenDANnotate = function(){
       else {
         TSG.Images.CurrentImage = TSG.Images.Regular;
         TSG.Canvas.annotatedImageRight =   TSG.Images.Regular.annotatedImageRight;
-        TSG.Canvas.annotatedImageLeft  =   TSG.Images.Regular.annotatedImageRight;
+        TSG.Canvas.annotatedImageLeft  =   TSG.Images.Regular.annotatedImageLeft;
         $('#image-title').toggle(300);
         $('#annotation-facts').toggle(300);
         dirtybit = 0;
