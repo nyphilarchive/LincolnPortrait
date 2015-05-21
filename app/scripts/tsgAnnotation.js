@@ -304,6 +304,9 @@ var OpenDANnotate = function(){
       else if(text === "E. G. Marshall"){
         index = 3;
       }
+      else if(text === "Joe Torre"){
+        index = 16;
+      }
       $.each(TSG.Canvas.annotations.annotationSet, function(index, annotation){
         $('#annotation-'+index).hide();
       });
@@ -464,6 +467,12 @@ var OpenDANnotate = function(){
         "x2": 400,
         "y1": 0,
         "y2": 650
+      },
+      {
+        "x1": 560,
+        "x2": 700,
+        "y1": 235,
+        "y2": 300
       }
     ],
     changeScale : function(scaleFactor){
