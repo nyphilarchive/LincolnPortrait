@@ -277,8 +277,9 @@ var OpenDANnotate = function(){
     });
 
     $('a').click(function(evt){
-      console.log(evt.currentTarget.innerText);
-      var text = evt.currentTarget.innerText;
+      // alert(evt.currentTarget.textContent);
+      // console.log(evt.currentTarget.innerText);
+      var text = evt.currentTarget.textContent.trim();
       var index = -1;
       if(text === "Aaron Copland"){
         index = 1;
