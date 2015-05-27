@@ -230,15 +230,18 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      options: {
-        assetsDirs: [
-          '<%= config.dist %>',
-          '<%= config.dist %>/images',
-          '<%= config.dist %>/styles'
-        ]
-      },
       html: ['<%= config.dist %>/{,*/}*.html'],
-      css: ['<%= config.dist %>/styles/{,*/}*.css']
+      css: ['<%= config.dist %>/styles/{,*/}*.css'],
+      js: '<%= config.dist %>/scripts/*.js',
+      options: {
+        assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images', '<%= config.dist %>/styles'],
+        patterns: {
+          // FIXME While usemin won't have full support for revved files we have to put all references manually here
+          js: [
+              [/(images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
+          ]
+        }
+      }
     },
 
     // The following *-min tasks produce minified files in the dist folder
@@ -381,8 +384,7 @@ module.exports = function (grunt) {
       dist: [
         'sass',
         'copy:styles',
-        'imagemin',
-        'svgmin'
+        'imagemin'
       ]
     }
   });
