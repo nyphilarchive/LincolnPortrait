@@ -543,4 +543,3 @@ var OpenDANnotate = function(){
   window.onload = TSG.init;
   return TSG;
 }();
- 
