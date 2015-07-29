@@ -15,14 +15,14 @@ var OpenDANnotate = function(){
 
   TSG.Images.Regular = {
     origScale : {
-      width: .78,
-      height: .78
+      width: 1,
+      height: 1
     },
     leftId: "annotated-image-left",
     rightId: "annotated-image-right",
     rightImageOffset: 25,
-    canvasWidth : 855,
-    canvasHeight: 580,
+    canvasWidth : 1812,
+    canvasHeight: 1200,
     movementScale: .99,
     annotatedImageRight: new Image(),
     annotatedImageLeft: new Image()
@@ -57,28 +57,28 @@ var OpenDANnotate = function(){
 
   TSG.Images.ImageDerivatives = {
       500: {
-        rightSrc: 'images/LincolnRight_0500h.jpg',
-        leftSrc: 'images/LincolnLeft_0500h.jpg'
+        rightSrc: 'images/LincolnRight_0580h.jpg',
+        leftSrc: 'images/LincolnLeft_0580h.jpg'
       },
       580: {
         rightSrc: 'images/LincolnRight_0580h.jpg',
         leftSrc: 'images/LincolnLeft_0580h.jpg'
       },
       750: {
-        rightSrc: 'images/LincolnRight_0750h.jpg',
-        leftSrc: 'images/LincolnLeft_0750h.jpg'
+        rightSrc: 'images/LincolnRight_1200h.jpg',
+        leftSrc: 'images/LincolnLeft_1200h.jpg'
       },
       1000: {
-        rightSrc: 'images/LincolnRight_1000h.jpg',
-        leftSrc: 'images/LincolnLeft_1000h.jpg'
+        rightSrc: 'images/LincolnRight_1200h.jpg',
+        leftSrc: 'images/LincolnLeft_1200h.jpg'
       },
       1200: {
         rightSrc: 'images/LincolnRight_1200h.jpg',
         leftSrc: 'images/LincolnLeft_1200h.jpg'
       },
       1400: {
-        rightSrc: 'images/LincolnRight_1400h.jpg',
-        leftSrc: 'images/LincolnLeft_1400h.jpg'
+        rightSrc: 'images/LincolnRight_1200h.jpg',
+        leftSrc: 'images/LincolnLeft_1200h.jpg'
       },
       1600: {
         rightSrc: 'images/LincolnRight_1600h.jpg',
@@ -110,7 +110,7 @@ var OpenDANnotate = function(){
       ctx.drawImage(TSG.Canvas.annotatedImageRight,0,0);
     }
     else {
-      ctx.drawImage(TSG.Canvas.annotatedImageLeft,0,0,TSG.Images.CurrentImage.canvasWidth/2, TSG.Images.CurrentImage.canvasHeight);
+      ctx.drawImage(TSG.Canvas.annotatedImageLeft,0,0);
       ctx.drawImage(TSG.Canvas.annotatedImageRight,(TSG.Images.CurrentImage.canvasWidth)/2,0,TSG.Images.CurrentImage.canvasWidth/2, TSG.Images.CurrentImage.canvasHeight);
     }
   }
@@ -329,44 +329,44 @@ var OpenDANnotate = function(){
   if(windowHeight < 750){
     TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['580'].rightSrc;
     TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['580'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['750'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['750'].leftSrc;
+     TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['580'].rightSrc;
+     TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['580'].leftSrc;
   }
   else if(windowHeight < 1000){
     TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['750'].rightSrc;
     TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['750'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1000'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1000'].leftSrc;
+    // TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1000'].rightSrc;
+    // TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1000'].leftSrc;
   }
   else if(windowHeight < 1200){
     TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['1000'].rightSrc;
     TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['1000'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1200'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1200'].leftSrc;
+    // TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1200'].rightSrc;
+    // TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1200'].leftSrc;
   }
    if(windowHeight < 1400){
     TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['1200'].rightSrc;
     TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['1200'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1400'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1400'].leftSrc;
+    // TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1400'].rightSrc;
+    // TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1400'].leftSrc;
   }
   else if(windowHeight < 1600){
     TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['1400'].rightSrc;
     TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['1400'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1600'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1600'].leftSrc;
+    // TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1600'].rightSrc;
+    // TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1600'].leftSrc;
   }
   else if(windowHeight < 1800){
     TSG.Canvas.annotatedImageRight.src = TSG.Images.Regular.annotatedImageRight.src = TSG.Images.ImageDerivatives['1600'].rightSrc;
     TSG.Canvas.annotatedImageLeft.src = TSG.Images.Regular.annotatedImageRight.src =  TSG.Images.ImageDerivatives['1600'].leftSrc;
-    TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1800'].rightSrc;
-    TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1800'].leftSrc;
+    // TSG.Images.Large.annotatedImageRight.src = TSG.Images.ImageDerivatives['1800'].rightSrc;
+    // TSG.Images.Large.annotatedImageLeft.src = TSG.Images.ImageDerivatives['1800'].leftSrc;
   }
 
   TSG.Canvas.OGCanvasSize = {
     //you need to set the orignal height of the canvas when annotations where done
     "height" : 650,
-    "width"  : 985,
+    "width"  : 1020,
   };
   TSG.Canvas.annotations = {
     "offsetX" : 0,
