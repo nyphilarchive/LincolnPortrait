@@ -10,6 +10,26 @@
 
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks('grunt-replace');
+  grunt.initConfig({
+    replace: {
+      dist: {
+        options: {
+          patterns: [
+            {
+              match: 'UA-XXXXX-X',
+              replacement: 'UA-285871-3'
+            }
+          ]
+        },
+        files: [
+          {expand: true, flatten: true, src: ['<%= config.app %>/index.html'], dest: '<%= config.dist %>'}
+        ]
+      }
+    }
+  });
+  
+  grunt.registerTask('default', 'replace');
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
