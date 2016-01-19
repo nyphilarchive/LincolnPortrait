@@ -9,7 +9,7 @@ var OpenDANnotate = function(){
     Debug   : {}
   };
 
-  $("body").addClass("loading");
+  // $("body").addClass("loading");
 
   TSG.Images.CurrentImage = {};
 
@@ -314,6 +314,7 @@ var OpenDANnotate = function(){
       TSG.Canvas.annotations.toggleAnnotation(index);
     });
     $("body").removeClass("loading");
+    $(".loading-modal").delay(1000).hide(0);
 
     //TSG.Utils.showMousePosition();
   };

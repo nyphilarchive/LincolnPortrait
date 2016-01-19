@@ -36,6 +36,7 @@ body {
   margin-bottom: 75px;
   font-family: "Crimson Text",serif;
   background-color: #333;
+
 }
 
 /*Footer*/
@@ -266,12 +267,18 @@ h4.modal-title {
 
 .tsg-header-title{
   font-size: 20px;
+  margin-top: -10px;
 }
 
 .tsg-caption-content {
   font-size: large;
   width: 75%;
   font-style: italic;
+  line-height: 1;
+
+  img{
+    padding-bottom: 10px;
+  }
 }
 
 .tsg-modal-btn {
@@ -281,6 +288,8 @@ h4.modal-title {
 .tsg-program-link {
   float: right;
   /*color: red;*/
+  font-family: sans-serif;
+  padding-top: 5px;
 }
 
 a, a:hover, a:visited, a:link {
@@ -308,7 +317,8 @@ text-decoration: none;
 
 .sidebar-footer p, .sidebar-footer p a {
   color: #666;
-  font-size: 12px !important;
+  font-size: 14px !important;
+  font-family: sans-serif ;
 }
 
 .image-annotations{
@@ -331,12 +341,23 @@ text-decoration: none;
 .subtext{
   font-style:italic;
   color:#ffffff;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 @media (max-width: 600px){
+  
+  h2{
+    font-size: 3em;
+  }
   #annotation-section {
-    background-color: black;
+    /*padding-left: 0px !important;*/
+    h2 {
+      line-height: 0.9;
+      span{
+        font-size: 23px;
+      }    
+
+    }
   }
 
   #annotation-container {
@@ -360,6 +381,26 @@ text-decoration: none;
   .modal-content {
     width: 95%;
   }
+  .subtext {
+    font-size: 18px ;
+  }
+  p.viewscore a{
+      padding-left: 0px;
+  }
+  
+}
+
+@media (min-width:1200px){
+
+  .row {
+      overflow: hidden;
+  }
+
+#annotation-facts{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
 }
 
 .tsg-container{
@@ -389,7 +430,7 @@ li > a {
 }
 
 .loading-modal {
-  display:    none;
+  opacity:    0;
   position:   fixed;
   z-index:    1000;
   top:        0;
@@ -397,9 +438,13 @@ li > a {
   height:     100%;
   width:      100%;
   background: rgba( 88, 88, 88, .8 )
-              url('../images/ajax-loader.gif')
+              url('../images/gears.svg')
               50% 50%
               no-repeat;
+
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
 
 }
 
@@ -408,5 +453,9 @@ body.loading {
 }
 
 body.loading .loading-modal {
-    display: block;
+   opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+   -webkit-transform: translateZ(0);
 }

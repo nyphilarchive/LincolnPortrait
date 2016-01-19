@@ -277,6 +277,13 @@ module.exports = function (grunt) {
     },
 
     svgmin: {
+      options: {
+        plugins: [{
+          collapseGroups: false
+        }, {
+          removeUnknownsAndDefaults: false
+        }]
+      },
       dist: {
         files: [{
           expand: true,
@@ -404,7 +411,8 @@ module.exports = function (grunt) {
       dist: [
         'sass',
         'copy:styles',
-        'imagemin'
+        'imagemin',
+        'svgmin'
       ]
     }
   });
